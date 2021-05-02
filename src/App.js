@@ -12,6 +12,7 @@ import {fetchData} from "./Components/decodeJWT";
 import loginWithUser from "./Components/Login";
 import logoutUser from "./Components/Logout";
 import {NavDropdown} from 'react-bootstrap';
+import AddUserUI from "./Components/AddUser";
 
 function LogIn({ login }) {
   const init = { username: "", password: "" };
@@ -90,7 +91,10 @@ const history = useHistory();
     )
     
   }
-  
+  const signup = () => {
+   return AddUserUI();
+    
+  }
 
 
  const ShowLandingPage = () => (
@@ -103,6 +107,7 @@ const history = useHistory();
         <Route path="/about" component={About} />
         <Route path="/login" component={LoginPage}/>
         <Route path="/logout" component={logoutBtn}/> 
+        <Route path="/signup" component={signup}/> 
         {/* <Item onClick={logout}>Logout</Item> */}
         
         <Route path="/endpoint1" component={Endpoint1} />

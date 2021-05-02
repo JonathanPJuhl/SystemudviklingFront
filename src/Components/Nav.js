@@ -22,6 +22,12 @@ function Nav() {
                 <Link style={navStyle} to="/logout">
                    <li>Logout</li>
                 </Link>
+                
+              
+                <Link style={navStyle} to="/signup">
+                   <li>signup</li>
+                </Link>
+                
 
                 <Link style={navStyle} to='/about'>
                     <li>about</li>
