@@ -23,11 +23,6 @@ function Nav() {
                    <li>Logout</li>
                 </Link>
                 
-              
-                <Link style={navStyle} to="/signup">
-                   <li>signup</li>
-                </Link>
-                
 
                 <Link style={navStyle} to='/about'>
                     <li>about</li>
@@ -51,5 +46,43 @@ function Nav() {
         </nav>
     );
 }
+function NavNotLoggedIn() {
+
+    const navStyle = {
+        color: ' white'
+    }
+   
+
+    return (
+        <nav>
+             
+            <Link style={navStyle} to='/'>
+                <h3>Home</h3>
+            </Link>
+            
+            <ul className="links">
+            <Link style={navStyle} to="/login">
+                   <li>Login</li>
+                </Link>
+              
+                <Link style={navStyle} to="/signup">
+                   <li>Sign up</li>
+                </Link>
+                
+
+                <Link style={navStyle} to='/about'>
+                    <li>About</li>
+                </Link>
+
+
+                <Link style={navStyle} to='/endpoint1'>
+                    <li>Users</li>
+                </Link>
+
+            </ul>
+        </nav>
+    );
+}
 
 export default Nav;
+export {NavNotLoggedIn};

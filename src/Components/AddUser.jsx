@@ -4,7 +4,8 @@ import {createUserURL} from "../settings"
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-
+import App from "../App"
+import { Link } from 'react-router-dom'
 import '../App.css';
 
 function AddUserUI(){
@@ -20,9 +21,10 @@ function AddUserUI(){
     
     
 }
-const handleSubmit = (evt) => {
+function handleSubmit (evt) {
   evt.preventDefault();
   AddUser(user);
+  alert("Success creating user, now please login")
   
 }
   

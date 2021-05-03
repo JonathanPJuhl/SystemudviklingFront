@@ -1,4 +1,4 @@
-import App from "../App"
+
 const logoutUser = () => {
     console.log("dawwdadawf ")
     localStorage.removeItem("jwtToken");
