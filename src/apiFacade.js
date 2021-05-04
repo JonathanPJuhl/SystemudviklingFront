@@ -1,5 +1,5 @@
 import jwt_decode from "jwt-decode";
-const URL = "http://localhost:8080/ca3";
+import {userURL, loginURL} from "./settings"
  
 function handleHttpErrors(res) {
  if (!res.ok) {
@@ -27,7 +27,7 @@ const logout = () => {
  
 const login = (user, password) => {
     const options = makeOptions("POST", false,{username: user, password: password });
-    return fetch(URL + "/api/login", options)
+    return fetch(loginURL, options)
       .then(handleHttpErrors)
       .then(res => {setToken(res.token) })
  }
@@ -53,10 +53,10 @@ const fetchData = () => {
     let options = "";
     if(rolesArr.includes("admin")){
      options = makeOptions("GET", true); //True adds the token
-      return fetch(URL + "/api/info/admin", options).then(handleHttpErrors);
+      return fetch(userURL, options).then(handleHttpErrors);
     } else
     options = makeOptions("GET", true); //True adds the token
-    return fetch(URL + "/api/info/user", options).then(handleHttpErrors);
+    return fetch(userURL, options).then(handleHttpErrors);
  }
 const makeOptions= (method,addToken,body) =>{
    var opts = {

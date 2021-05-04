@@ -1,8 +1,8 @@
 const URL = "http://localhost:8080/sys/api/";
 //const URL = "ipwithme.com/tomcat/sys/api/"
 
-const adminURL = URL + "info/admin";
-const userURL = URL + "info/user";
+const adminURL = URL + "user/admin";
+const userURL = URL + "user/user";
 const createUserURL = URL + "user/create";
 const fiveThingsURL = URL + "5things/teachersSolution";
 const loginURL = URL + "login";

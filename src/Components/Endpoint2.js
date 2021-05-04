@@ -18,7 +18,6 @@ const fetchItems =  async () => {
   );
 
   const jokes = await data.json();
-  //console.log(items);
   setJokes(jokes);
 
 

@@ -4,8 +4,6 @@ import {createUserURL} from "../settings"
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import App from "../App"
-import { Link } from 'react-router-dom'
 import '../App.css';
 
 function AddUserUI(){
@@ -28,7 +26,6 @@ function handleSubmit (evt) {
   
 }
   
-
     return (
         <div>
           <Container fluid>
@@ -59,11 +56,6 @@ function handleSubmit (evt) {
   </Row>   
             
            
-            
-           
-
-           
-           
             </form>
             
             </Container>
@@ -77,9 +69,6 @@ function handleSubmit (evt) {
 function AddUser(user){
     const options = makeOptions("POST", false,user);
     return fetch(createUserURL, options)
-      //.then(res => {setToken(res.token) })
- 
-
     
 }
 const makeOptions= (method, addToken,body) =>{
@@ -90,9 +79,6 @@ const makeOptions= (method, addToken,body) =>{
         'Accept': 'application/json',
       }
     }
-    // if (addToken && loggedIn()) {
-    //   opts.headers["x-access-token"] = getToken();
-    // }
     if (body) {
       opts.body = JSON.stringify(body);
       console.log(JSON.stringify(body));

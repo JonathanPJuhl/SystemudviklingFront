@@ -1,4 +1,4 @@
-import Login, {getToken, loggedIn} from './Login'
+import {getToken, loggedIn} from './Login'
 import handleHttpErrors from "./Errors"
 import jwt_decode from "jwt-decode";
 import {adminURL, userURL} from "../settings"

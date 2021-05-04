@@ -1,73 +1,70 @@
-
-import './App.css';
-import About from './Components/About';
-import Endpoint1 from './Components/Endpoint1'
-import Endpoint2 from './Components/Endpoint2'
-import Endpoint3 from './Components/Endpoint3'
-import { Link } from 'react-router-dom'
-import Nav, { NavNotLoggedIn } from './Components/Nav'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import React, { useState, useEffect } from "react"
+import "./App.css";
+import About from "./Components/About";
+import Pin from "./Components/PinStock";
+import Endpoint2 from "./Components/Endpoint2";
+import Endpoint3 from "./Components/Endpoint3";
+import { Link } from "react-router-dom";
+import Nav, { NavNotLoggedIn } from "./Components/Nav";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import { fetchData } from "./Components/decodeJWT";
 import loginWithUser from "./Components/Login";
 import logoutUser from "./Components/Logout";
-import { NavDropdown } from 'react-bootstrap';
 import AddUserUI from "./Components/AddUser";
 
-
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false)
+  let logged = false;
+  if(localStorage.getItem("jwtToken")!=null){
+    logged= true;
+  }
 
+  const [loggedIn, setLoggedIn] = useState(logged);
 
   function LogIn({ login }) {
     const init = { username: "", password: "" };
     const [loginCredentials, setLoginCredentials] = useState(init);
 
     const performLogin = (evt) => {
-      console.log(loginCredentials)
-      //evt.preventDefault();
+      evt.preventDefault();
+      console.log(loginCredentials);
       login(loginCredentials.username, loginCredentials.password);
       
-      
-      
-    }
+    };
     const onChange = (evt) => {
-      setLoginCredentials({ ...loginCredentials, [evt.target.id]: evt.target.value })
-    }
+      setLoginCredentials({
+        ...loginCredentials,
+        [evt.target.id]: evt.target.value,
+      });
+    };
 
     return (
       <div>
         <h2>Login</h2>
-        
-        <form onChange={onChange} >
+
+        <form onChange={onChange}>
           <input placeholder="User Name" id="username" />
           <input placeholder="Password" id="password" />
-          
+
           <Link to="/">
-          <button type="button" id="btnn" onClick={performLogin}>Login</button>
-            </Link>
+            <button type="button" id="btnn" onClick={performLogin}>
+              Login
+            </button>
+          </Link>
         </form>
-        
       </div>
-    ) 
-
+    );
   }
 
- 
   const logout = () => {
-    setLoggedIn(false)
-    return (<div>
-        {logoutUser()}
-      </div>
-    )
-  }
+    setLoggedIn(false);
+    return <div>{logoutUser()}</div>;
+  };
 
   const login = (user, pass) => {
     LoginPage();
-    loginWithUser(user, pass)
-      .then(res => setLoggedIn(true));
-
-  }
+    loginWithUser(user, pass).then((res) => setLoggedIn(true))
+    
+  };
   const logoutBtn = () => {
     return (
       <div>
@@ -75,90 +72,80 @@ function App() {
         <Link to="/">
           <button type="button" onClick={logout}>
             Logout
-     </button>
+          </button>
         </Link>
-
       </div>
-    )
-
-  }
+    );
+  };
   const signup = () => {
     return AddUserUI();
+  };
 
-  }
+  const ShowLandingPage = () =>
+    !loggedIn ? (
+      <Router>
+        <div className="App">
+          <NavNotLoggedIn />
+          <Switch>
+            <Route path="/" exact component={Home} />
+            <Route path="/about" component={About} />
+            <Route path="/login" component={LoginPage} />
+            <Route path="/signup" component={signup} />
 
-
-  const ShowLandingPage = () => (
-
-    !loggedIn ? (<Router>
-      <div className="App">
-        <NavNotLoggedIn />
-        <Switch>
-          <Route path="/" exact component={Home} />
-          <Route path="/about" component={About} />
-          <Route path="/login" component={LoginPage} />
-          <Route path="/signup" component={signup} />
-
-
-          <Route path="/endpoint1" component={Endpoint1} />
-        </Switch>
-
-      </div>
-    </Router>)
-
-      : (
-        <div>
+            <Route path="/Pinned" component={Pin} />
+          </Switch>
+        </div>
+      </Router>
+    ) : (
+      <div>
         <Router>
           <div className="App">
             <Nav />
             <Switch>
-              <Route path="/" exact component={Home} />
+              <Route path="/" exact component={HomeLoggedIn} />
               <Route path="/about" component={About} />
               <Route path="/logout" component={logoutBtn} />
 
-              <Route path="/endpoint1" component={Endpoint1} />
+              <Route path="/Pinned" component={Pin} />
               <Route path="/endpoint2" component={Endpoint2} />
               <Route path="/endpoint3" component={Endpoint3} />
             </Switch>
-
           </div>
         </Router>
-
-      </div>)
-
-  )
-
-
-
-
-
+      </div>
+    );
 
   function LoginPage() {
-    return (
-      <LogIn login={login} />)
-
+    return <LogIn login={login} />;
   }
 
   return (
-
-
     <div className="App">
       <div>
-
         <ShowLandingPage />
-
-
       </div>
     </div>
   );
-
 }
+function LoggedIn() {
+  const [dataFromServer, setDataFromServer] = useState("Loading...");
 
+  useEffect(() => {
+    fetchData().then((data) => setDataFromServer(data.msg));
+  }, []);
+
+  return (
+    <div>
+      <h3>{dataFromServer}</h3>
+    </div>
+  );
+}
 
 const Home = () => (
   <div>
-    <h1>hey</h1>
+    <h1>Welcome!</h1>
   </div>
-)
+);
+const HomeLoggedIn = () => <LoggedIn />;
 
 export default App;

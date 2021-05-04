@@ -19,16 +19,21 @@ function Endpoint3() {
   const fetchItems =  async () => { 
     const data = await fetch(fiveThingsURL);
   
-    const names = await data.json();
-    //console.log(items);
-    setName(names);
-  
+    let names = []
+    names = await data.json();
+    let dataa =  names.map(datas =>(
+      datas.data.name
+      
+      )
+      )
+    setName(dataa);
+    
   
   }
   
     return (
       <div>
-        <ReactBootStrap.Table striped bordered hover variant="sm" >
+         <ReactBootStrap.Table striped bordered hover variant="sm" >
         <thead>
     <tr>
    
@@ -37,18 +42,16 @@ function Endpoint3() {
       <th>Gender</th>
     </tr>
     </thead><tbody>
+       {console.log(name)}
   {name.map(test  => (
-    <tr key={test.name}>
-      
-      
-      <td>{test.name}</td> <td>{test.height}</td> <td>{test.gender}</td>
+    <tr key={test}>
+
+      <td>{test}</td>  <td>{test}</td> <td>{test}</td> 
       </tr>
-      
-      
-    
+   
   ))}
   </tbody>
-  </ReactBootStrap.Table>
+  </ReactBootStrap.Table> 
       </div>
     );
   }

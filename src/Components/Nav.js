@@ -1,8 +1,7 @@
 import '../App.css';
 import React from 'react';
 import { Link } from 'react-router-dom'
-import facade from "../apiFacade";
-import App from "../App"
+
 
 function Nav() {
 
@@ -29,8 +28,8 @@ function Nav() {
                 </Link>
 
 
-                <Link style={navStyle} to='/endpoint1'>
-                    <li>Users</li>
+                <Link style={navStyle} to='/Pinned'>
+                    <li>Pinned</li>
                 </Link>
 
                 <Link style={navStyle} to='/endpoint2'>
@@ -75,9 +74,9 @@ function NavNotLoggedIn() {
                 </Link>
 
 
-                <Link style={navStyle} to='/endpoint1'>
+                {/* <Link style={navStyle} to='/endpoint1'>
                     <li>Users</li>
-                </Link>
+                </Link> */}
 
             </ul>
         </nav>

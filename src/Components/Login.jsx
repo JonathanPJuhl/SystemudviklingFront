@@ -36,6 +36,6 @@ const loginWithUser = (user, password) => {
     }
     return opts;
   }
-//export default Login;
+
 export default loginWithUser;
 export {getToken, loggedIn};
