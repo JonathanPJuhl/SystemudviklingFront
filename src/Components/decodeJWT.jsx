@@ -2,7 +2,25 @@ import {getToken, loggedIn} from './Login'
 import handleHttpErrors from "./Errors"
 import jwt_decode from "jwt-decode";
 import {adminURL, userURL} from "../settings"
-let username;
+let username
+const fetchUsername = () => {
+  const decodeToken = (token) => {
+    return jwt_decode(token, { complete: true });
+  };
+
+  let getDecodedToken = () => {
+    let token = getToken();
+
+    if (token) {
+      return decodeToken(token);
+    }
+
+    return null;
+  };
+  let tokenFinished = getDecodedToken();
+     username = tokenFinished.username;
+    return username;
+}
 const fetchData = () => {
     const decodeToken = (token) => {
       return jwt_decode(token, { complete: true });
@@ -20,7 +38,7 @@ const fetchData = () => {
     let tokenFinished = getDecodedToken();
     
       let roles = tokenFinished.roles;
-      username = tokenFinished.username;
+     
       let rolesArr = [];
       rolesArr = roles.split(",");
       let options = "";
@@ -47,4 +65,4 @@ const fetchData = () => {
      }
      return opts;
    }
-  export {fetchData, username};
+  export {fetchData, fetchUsername, username};

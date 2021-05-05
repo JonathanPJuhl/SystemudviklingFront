@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import * as ReactBootStrap from "react-bootstrap";
 import { pinStock } from "../settings";  
 import SpecificStockInfo, {Link} from "./ShowSpecificStockInfo"
-import {username} from "./decodeJWT"
+import {fetchUsername} from "./decodeJWT"
 
 
 function Endpoint3() {
@@ -74,7 +74,7 @@ function Endpoint3() {
     }
     function AddStock(stockTicker){
      // let tick = {stockTicker: {ticker}}
-      const options = makeOptions("POST",stockTicker+","+username);
+      const options = makeOptions("POST",stockTicker+","+fetchUsername());
       return fetch(pinStock, options)
       
   }
