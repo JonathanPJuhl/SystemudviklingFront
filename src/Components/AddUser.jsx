@@ -7,7 +7,7 @@ import Col from 'react-bootstrap/Col'
 import '../App.css';
 
 function AddUserUI(){
-    const init = { username: "", password: "", recoveryquestion: "", answer: ""};
+    const init = { username: "", password: "", passCheck: "", recoveryquestion: "", answer: ""};
   const [user, setUser] = useState(init);
   
   const handleChange = (evt) => {
@@ -15,15 +15,25 @@ function AddUserUI(){
     let target = evt.target;
     let id = target.id;
     let value = target.value
-    setUser({...user, [id]: value});
+    
+  
+      setUser({...user, [id]: value});
     
     
 }
 function handleSubmit (evt) {
   evt.preventDefault();
+  let target = evt.target;
+  console.log(user.passCheck + user.password)
+  if(user.password!=user.passCheck){
+    alert("passwords don't match")
+  }else if((user.password==user.passCheck) && (user.password.length<8)){
+    alert("password must be more than 8 characters")
+  }
+    else{
   AddUser(user);
   alert("Success creating user, now please login")
-  
+  }
 }
   
     return (
@@ -34,10 +44,10 @@ function handleSubmit (evt) {
     <Col><input class="stretch-to-fit" type="text" id="username" placeholder="email"></input></Col>
   </Row>
   <Row>
-  <Col> <input type="password" class="stretch-to-fit" id ="password" placeholder="password"></input></Col>
+  <Col> <input type="password" class="stretch-to-fit" id ="password" placeholder="password (minimum 8 characters)"></input></Col>
   </Row>   
   <Row>
-  <Col><input type="password"class="stretch-to-fit" placeholder="password confirmation"></input></Col>
+  <Col><input type="password"class="stretch-to-fit" id="passCheck" placeholder="password confirmation"></input></Col>
   </Row>   
   <Row>
   <Col> <select class="stretch-to-fit" name="recoveryquestion" id="recoveryquestion">
