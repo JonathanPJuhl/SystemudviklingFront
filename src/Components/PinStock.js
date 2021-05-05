@@ -26,7 +26,7 @@ const makeOptions= (method) =>{
     headers: {
       "Content-type": "application/json",
       'Accept': 'application/json',
-       "Access-Control-Allow-Origin": "*"
+      
     },
     data: {'access_key' : '5feeee1a869fedc6e6e24e62c735bc22',}
   } 

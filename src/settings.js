@@ -6,4 +6,5 @@ const userURL = URL + "user/user";
 const createUserURL = URL + "user/create";
 const fiveThingsURL = URL + "5things/teachersSolution";
 const loginURL = URL + "login";
-export {adminURL, userURL, fiveThingsURL, loginURL, createUserURL};
+const pinStock = URL + "stock/pin"
+export {adminURL, userURL, fiveThingsURL, loginURL, createUserURL, pinStock};

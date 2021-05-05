@@ -12,6 +12,7 @@ import loginWithUser from "./Components/Login";
 import logoutUser from "./Components/Logout";
 import AddUserUI from "./Components/AddUser";
 
+
 function App() {
   let logged = false;
   if(localStorage.getItem("jwtToken")!=null){
@@ -105,6 +106,7 @@ function App() {
               <Route path="/" exact component={HomeLoggedIn} />
               <Route path="/about" component={About} />
               <Route path="/logout" component={logoutBtn} />
+              
 
               <Route path="/Pinned" component={Pin} />
               <Route path="/endpoint2" component={Endpoint2} />
