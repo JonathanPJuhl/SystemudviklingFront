@@ -24,7 +24,6 @@ function Endpoint3() {
       );
 
       const items = await data.json();
-         console.log(items.data);
          setItems(items.data);
 
 
