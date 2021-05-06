@@ -29,11 +29,11 @@ function Nav() {
 
 
                 <Link style={navStyle} to='/Pinned'>
-                    <li>Pinned</li>
+                    <li>Find stocks</li>
                 </Link>
 
                 <Link style={navStyle} to='/endpoint2'>
-                    <li>Chuck norris jokes</li>
+                    <li>Pinned stocks</li>
                 </Link>
 
                 <Link style={navStyle} to='/endpoint3'>

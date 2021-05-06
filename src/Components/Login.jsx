@@ -6,6 +6,10 @@ const getToken = () => {
   return localStorage.getItem('jwtToken')
 }
 
+const removeToken = () => {
+  return localStorage.removeItem('jwtToken')
+}
+
 
 const setToken = (token) => {
     localStorage.setItem('jwtToken', token)
@@ -38,4 +42,4 @@ const loginWithUser = (user, password) => {
   }
 
 export default loginWithUser;
-export {getToken, loggedIn};
+export {getToken, loggedIn, removeToken};

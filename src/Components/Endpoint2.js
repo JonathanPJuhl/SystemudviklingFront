@@ -1,7 +1,8 @@
 
 import '../App.css';
 import React, {useState, useEffect} from 'react';
-
+import {fetchUsername} from "./decodeJWT"
+import {pinnedStocks} from "../settings";
 
 
 function Endpoint2() {
@@ -10,23 +11,24 @@ function Endpoint2() {
 fetchItems();
   }, []);
 
-  const [jokes, setJokes] = useState ([]);
+  const [pinned, setPinned] = useState ([]);
 
 
 const fetchItems =  async () => { 
-  const data = await fetch('https://api.chucknorris.io/jokes/random'
+  const data = await fetch(pinnedStocks+fetchUsername()
   );
 
-  const jokes = await data.json();
-  setJokes(jokes);
+  const pins = await data.json();
+  setPinned(pins);
 
 
 }
 
   return (
+  
     <div>
-{jokes.value}
-
+{pinned.stockTicker}
+{console.log(pinned)}
 
 
 </div>

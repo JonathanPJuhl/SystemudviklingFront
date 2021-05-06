@@ -8,7 +8,7 @@ import Nav, { NavNotLoggedIn } from "./Components/Nav";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { fetchData } from "./Components/decodeJWT";
-import loginWithUser from "./Components/Login";
+import loginWithUser, {removeToken} from "./Components/Login";
 import logoutUser from "./Components/Logout";
 import AddUserUI from "./Components/AddUser";
 
@@ -129,6 +129,25 @@ function App() {
     </div>
   );
 }
+// window.addEventListener("beforeunload", (ev) => 
+// {  
+    
+//     ev.preventDefault();
+//     ev.returnValue = 'Are you sure you want to close? You will have to login again!'
+//     let val = ev.target.value
+//     console.log(val)
+//     check(val)
+//     function check(val){
+//       if(val==true){
+//         removeToken();
+//       }
+//       else{
+
+//       }
+//     }
+   
+     
+// });
 function LoggedIn() {
   const [dataFromServer, setDataFromServer] = useState("Loading...");
 
