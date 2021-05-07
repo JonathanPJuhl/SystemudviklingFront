@@ -7,6 +7,8 @@ import * as ReactBootStrap from "react-bootstrap";
 function Endpoint2() {
   
   useEffect(() => {
+    setPinned([]);
+    setItems([]);
     fetchItems().then(keepfetching());
   }, []);
 
@@ -18,22 +20,12 @@ function Endpoint2() {
    
     pinned.map(function  (e){
       console.log(e.stockticker)
-      return fetchInfo(e.stockTicker) 
+       fetchInfo(e.stockTicker) 
     })
     console.log(arr);
     setItems(arr);
     console.log("item" + Object.values(item))
-    // for (let i = 0; i < pinned.length-1; i++) {
-      
-    //   if (i % 4 == 0) {
-    //     setTimeout(() => {
-    //       fetchInfo(pinned[i].stockTicker);
-    //     }, 3000);
-    //   } else {
-    //     console.log(pinned[i].stockTicker);
-    //     fetchInfo(pinned[i].stockTicker);
-    //   }
-    // }
+
   };
 
   const fetchInfo = async (ticker) => {
@@ -45,7 +37,7 @@ function Endpoint2() {
     console.log(Object.values(items.data));
     console.log("symsym" + items.data[0].symbol);
     arr.push(items.data[0]);
-    //setItems(...item, items.data);
+    //setItems(...item, items.data[0]);
     
   };
 
@@ -55,7 +47,10 @@ function Endpoint2() {
     const pins = await data.json();
     setPinned( pins);
   };
-  
+  //console.log("pinned bf return: " + Object.values(pinned));
+  console.log("item bf return: " + Object.values(item));
+  console.log("arr bf return: " + Object.values(arr));
+
   return (
     <div>
       <ReactBootStrap.Table striped bordered hover variant="sm">
@@ -71,7 +66,7 @@ function Endpoint2() {
           </tr>
         </thead>
 
-        {item.map((item) => (
+        {arr.map((item) => (
           <tr key={item.low}>
             <td>{item.symbol}</td>
             <td>{item.date}</td>
@@ -85,5 +80,4 @@ function Endpoint2() {
     </div>
   );
 }
-
 export default Endpoint2;
