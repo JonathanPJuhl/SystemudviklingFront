@@ -5,6 +5,8 @@ import * as ReactBootStrap from "react-bootstrap";
 import { pinStock } from "../settings";  
 import SpecificStockInfo, {Link} from "./ShowSpecificStockInfo"
 import {fetchUsername} from "./decodeJWT"
+import autocomplete from "./AutocompleteSearch"
+import { ReactSearchAutocomplete } from 'react-search-autocomplete'
 
 
 function Endpoint3() {
@@ -29,11 +31,39 @@ function Endpoint3() {
 
 
     }
+    const handleOnSearch = (string, results) => {
+      // onSearch will have as the first callback parameter
+      // the string searched and for the second the results.
+      console.log(string, results)
+    }
+  
+    const handleOnHover = (result) => {
+      // the item hovered
+      console.log(result)
+    }
+  
+    const handleOnSelect = (item) => {
+      AddStock(item.symbol);
+      alert("You just added: " + item.symbol+" to your list of pinned stocks")
+    }
+  
+    const handleOnFocus = () => {
+      console.log('Focused')
+    }
+  
 
 
 
       return (
         <div>
+           <ReactSearchAutocomplete
+            items={items}
+            onSearch={handleOnSearch}
+            
+            onSelect={handleOnSelect}
+            onFocus={handleOnFocus}
+            autoFocus
+          />
        <ReactBootStrap.Table striped bordered hover variant="sm" >
     <thead>
 <tr>
@@ -72,7 +102,6 @@ function Endpoint3() {
       
     }
     function AddStock(stockTicker){
-     // let tick = {stockTicker: {ticker}}
       const options = makeOptions("POST",stockTicker+","+fetchUsername());
       return fetch(pinStock, options)
       

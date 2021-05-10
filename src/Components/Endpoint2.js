@@ -26,7 +26,6 @@ function Endpoint2() {
 
 
   return (
-    
     <div>
       <ReactBootStrap.Table striped bordered hover variant="sm">
         <thead>
@@ -40,12 +39,10 @@ function Endpoint2() {
 
           </tr>
         </thead>
-       
-      
          {pinned.map((item) => (
           <tr key={item.data[0].symbol}>
             <td>{item.data[0].symbol}</td>
-            <td>{item.data[0].date}</td>
+            <td>{item.data[0].date.substring(0,10)}</td>
             <td>{item.data[0].open}</td>
             <td>{item.data[0].low}</td>
             <td>{item.data[0].high}</td>
