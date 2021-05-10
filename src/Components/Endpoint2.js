@@ -7,49 +7,54 @@ import * as ReactBootStrap from "react-bootstrap";
 function Endpoint2() {
   
   useEffect(() => {
-    setPinned([]);
-    setItems([]);
-    fetchItems().then(keepfetching());
+    
+    fetchItems();
   }, []);
 
   const [pinned, setPinned] = useState([]);
-  const [item, setItems] = useState([]);
-  let arr = [];
+  // const [item, setItems] = useState([]);
+  // let arr = [];
 
-  function keepfetching() {
+  // function keepfetching() {
    
-    pinned.map(function  (e){
-      console.log(e.stockticker)
-       fetchInfo(e.stockTicker) 
-    })
-    console.log(arr);
-    setItems(arr);
-    console.log("item" + Object.values(item))
+  //   pinned.map(function  (e){
+  //     console.log(e.stockticker)
+  //      fetchInfo(e.stockTicker) 
+  //   })
+  //   console.log(arr);
+  //   setItems(arr);
+  //   console.log("item" + Object.values(item))
 
-  };
+  // };
 
-  const fetchInfo = async (ticker) => {
-    const data = await fetch(
-      `https://api.marketstack.com/v1/eod/latest?access_key=5feeee1a869fedc6e6e24e62c735bc22&symbols=${ticker}`
-    );
+  // const fetchInfo = async (ticker) => {
+  //   const data = await fetch(
+  //     `https://api.marketstack.com/v1/eod/latest?access_key=5feeee1a869fedc6e6e24e62c735bc22&symbols=${ticker}`
+  //   );
 
-    const items = await data.json();
-    console.log(Object.values(items.data));
-    console.log("symsym" + items.data[0].symbol);
-    arr.push(items.data[0]);
-    //setItems(...item, items.data[0]);
+  //   const items = await data.json();
+  //   console.log(Object.values(items.data));
+  //   console.log("symsym" + items.data[0].symbol);
+  //   arr.push(items.data[0]);
+  //   //setItems(...item, items.data[0]);
     
-  };
-
+  // };
+let arr = [];
   const fetchItems = async () => {
     const data = await fetch(`${pinnedStocks}${fetchUsername()}`);
-    console.log(`URL: ${pinnedStocks}${fetchUsername()}`)
+    //console.log(`URL: ${pinnedStocks}${fetchUsername()}`)
     const pins = await data.json();
-    setPinned( pins);
+
+     arr = pins.map(function (e){
+     // console.log("PINNED: " + e.data[0]);
+      return e.data[0]
+    })
+    //setPinned(...arr);
+    
   };
   //console.log("pinned bf return: " + Object.values(pinned));
-  console.log("item bf return: " + Object.values(item));
-  console.log("arr bf return: " + Object.values(arr));
+ // console.log("item bf return: " + Object.values(item));
+// console.log("arr bf return: " + Object.values(arr));
 
   return (
     <div>
@@ -65,8 +70,9 @@ function Endpoint2() {
 
           </tr>
         </thead>
-
-        {arr.map((item) => (
+       
+        {console.log(arr)}
+         {arr.map((item) => (
           <tr key={item.low}>
             <td>{item.symbol}</td>
             <td>{item.date}</td>
@@ -75,7 +81,7 @@ function Endpoint2() {
             <td>{item.high}</td>
             <td>{item.close}</td>
           </tr>
-        ))}
+        ))} 
       </ReactBootStrap.Table>
     </div>
   );

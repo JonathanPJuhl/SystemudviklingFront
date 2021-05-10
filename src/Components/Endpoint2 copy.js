@@ -1,82 +1,178 @@
-
-import '../App.css';
-import React, {useState, useEffect} from 'react';
-import {fetchUsername} from "./decodeJWT"
-import {pinnedStocks} from "../settings";
+import "../App.css";
+import React, { useState, useEffect } from "react";
+import { fetchUsername } from "./decodeJWT";
+import { pinnedStocks } from "../settings";
 import * as ReactBootStrap from "react-bootstrap";
-let arr = [];
-function Endpoint2() {
 
+function Endpoint2() {
+  
   useEffect(() => {
-fetchItems();
+    setPinned([]);
+    setItems([]);
+    fetchItems().then(keepfetching());
   }, []);
 
-  const [pinned, setPinned] = useState ([]);
-  const [item, setItems] = useState ([]);
+  const [pinned, setPinned] = useState([]);
+  const [item, setItems] = useState([]);
+  let arr = [];
 
+  function keepfetching() {
+   
+    pinned.map(function  (e){
+      console.log(e.stockticker)
+       fetchInfo(e.stockTicker) 
+    })
+    console.log(arr);
+    setItems(arr);
+    console.log("item" + Object.values(item))
 
-const fetchItems =  async () => { 
-  const data = await fetch(`${pinnedStocks}${fetchUsername()}`);
+  };
 
-  const pins = await data.json();
-  setPinned(pins);
+  const fetchInfo = async (ticker) => {
+    const data = await fetch(
+      `https://api.marketstack.com/v1/eod/latest?access_key=5feeee1a869fedc6e6e24e62c735bc22&symbols=${ticker}`
+    );
 
+    const items = await data.json();
+    console.log(Object.values(items.data));
+    console.log("symsym" + items.data[0].symbol);
+    arr.push(items.data[0]);
+    //setItems(...item, items.data[0]);
+    
+  };
 
+  const fetchItems = async () => {
+    const data = await fetch(`${pinnedStocks}${fetchUsername()}`);
+    console.log(`URL: ${pinnedStocks}${fetchUsername()}`)
+    const pins = await data.json();
+    setPinned( pins);
+  };
+  console.log("pinned bf return: " + Object.values(pinned));
+  console.log("item bf return: " + Object.values(item));
+  console.log("arr bf return: " + Object.values(arr));
 
-let pinns = pinned.map(function(e){
-        
-  return e.stockTicker;
-})
-
-
-
-const fetchInfo =  async (ticker) => { 
-  const data = await fetch(`https://api.marketstack.com/v1/eod/latest?access_key=5feeee1a869fedc6e6e24e62c735bc22&symbols=${ticker}`
-  );
-
-  const items = await data.json();
-     console.log(items.data);
-    // setItems(items.data);
-    arr.push(items.data)
-}
-for(let i=0; i<pinns.length-1; i++){
-  fetchInfo(pinns[i]);
-}
-console.log("array: " + item)
-setItems(arr);
-//console.log("done" + JSON.stringify(item[0].symbol))
-}
   return (
-  
     <div>
-       
-       <ReactBootStrap.Table striped bordered hover variant="sm" >
-    <thead>
-<tr>
+      <ReactBootStrap.Table striped bordered hover variant="sm">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Date</th>
+            <th>Open</th>
+            <th>Low</th>
+            <th>High</th>
+            <th>Close</th>
 
-  <th>Name</th>
-  <th>Tickers</th>
-  <th>Add to pinned</th>
-</tr>
-</thead>
+          </tr>
+        </thead>
 
-
-        {item.map(item => (
-         <tbody key={item.high}>
-            
-         
+        {arr.map((item) => (
+          <tr key={item.low}>
             <td>{item.symbol}</td>
-            
-        </tbody>
- )) }
-
-
-
-</ReactBootStrap.Table> 
-
-
-</div>
+            <td>{item.date}</td>
+            <td>{item.open}</td>
+            <td>{item.low}</td>
+            <td>{item.high}</td>
+            <td>{item.close}</td>
+          </tr>
+        ))}
+      </ReactBootStrap.Table>
+    </div>
   );
 }
 
 export default Endpoint2;
+//----------------
+
+// import "../App.css";
+// import React, { useState, useEffect } from "react";
+// import { fetchUsername } from "./decodeJWT";
+// import { pinnedStocks } from "../settings";
+// import * as ReactBootStrap from "react-bootstrap";
+
+// function Endpoint2() {
+  
+//   useEffect(() => {
+//     fetchItems()
+//   }, []);
+
+//   const [pinned, setPinned] = useState([]);
+//   const [item, setItems] = useState([]);
+//   let arr = [];
+
+//   function keepfetching() {
+   
+//     pinned.map(function  (e){
+//       console.log(e.stockticker)
+//        fetchInfo(e.stockTicker) 
+//     }).then(setItems(arr))
+//     .then(console.log(arr))
+//     .then(console.log("item" + Object.values(item)))
+    
+//     //setItems(arr);
+    
+
+//   };
+
+//   function fetchInfo(ticker) {
+//     fetch(
+//       `https://api.marketstack.com/v1/eod/latest?access_key=5feeee1a869fedc6e6e24e62c735bc22&symbols=${ticker}`
+//     ).then(res => res.json())
+//     .then(data => {
+//       console.log("found data" + data);
+//       setItems(...item, data);
+//       arr.push(data[0]);
+//     })
+//   };
+
+//   function fetchItems() {
+//     fetch(`${pinnedStocks}${fetchUsername()}`).then(res => res.json())
+//     .then(data => {
+//       console.log("found data" + data);
+//       setPinned(data);
+//     }).then(keepfetching()).then(returnRes())
+//   };
+
+
+//   // const fetchItems = async () => {
+//   //   const data = await fetch(`${pinnedStocks}${fetchUsername()}`);
+//   //   console.log(`URL: ${pinnedStocks}${fetchUsername()}`)
+//   //   const pins = await data.json();
+//   //   setPinned( pins);
+//   // };
+//   // console.log("pinned bf return: " + Object.values(pinned));
+//   // console.log("item bf return: " + Object.values(item));
+//   // console.log("arr bf return: " + Object.values(arr));
+
+//   function returnRes(){ 
+//     return(
+//     <div>
+//       <ReactBootStrap.Table striped bordered hover variant="sm">
+//         <thead>
+//           <tr>
+//             <th>Name</th>
+//             <th>Date</th>
+//             <th>Open</th>
+//             <th>Low</th>
+//             <th>High</th>
+//             <th>Close</th>
+
+//           </tr>
+//         </thead>
+
+//         {arr.map((item) => (
+//           <tr key={item.low}>
+//             <td>{item.symbol}</td>
+//             <td>{item.date}</td>
+//             <td>{item.open}</td>
+//             <td>{item.low}</td>
+//             <td>{item.high}</td>
+//             <td>{item.close}</td>
+//           </tr>
+//         ))}
+//       </ReactBootStrap.Table>
+//     </div>
+//   );}
+// }
+
+// export default Endpoint2;
