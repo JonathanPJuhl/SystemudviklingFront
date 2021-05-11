@@ -48,7 +48,7 @@ function Endpoint3() {
     }
   
     const handleOnFocus = () => {
-      console.log('Focused')
+     
     }
   
 

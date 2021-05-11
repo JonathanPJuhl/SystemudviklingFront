@@ -93,60 +93,34 @@ export default Endpoint2;
 // function Endpoint2() {
   
 //   useEffect(() => {
-//     fetchItems()
+    
+//     setPinned(fetchItems());
 //   }, []);
 
 //   const [pinned, setPinned] = useState([]);
-//   const [item, setItems] = useState([]);
-//   let arr = [];
 
-//   function keepfetching() {
-   
-//     pinned.map(function  (e){
-//       console.log(e.stockticker)
-//        fetchInfo(e.stockTicker) 
-//     }).then(setItems(arr))
-//     .then(console.log(arr))
-//     .then(console.log("item" + Object.values(item)))
-    
-//     //setItems(arr);
-    
+// let arr = [];
+//   const fetchItems = async () => {
+//     const data = await fetch(`${pinnedStocks}${fetchUsername()}`);
+//     //console.log(`URL: ${pinnedStocks}${fetchUsername()}`)
+//     const pins = await data.json();
 
-//   };
-
-//   function fetchInfo(ticker) {
-//     fetch(
-//       `https://api.marketstack.com/v1/eod/latest?access_key=5feeee1a869fedc6e6e24e62c735bc22&symbols=${ticker}`
-//     ).then(res => res.json())
-//     .then(data => {
-//       console.log("found data" + data);
-//       setItems(...item, data);
-//       arr.push(data[0]);
+//      arr = pins.map(function (e){
+//       console.log("PINNED: " + Object.values(e.data[0]));
+//       return e.data[0]
 //     })
-//   };
-
-//   function fetchItems() {
-//     fetch(`${pinnedStocks}${fetchUsername()}`).then(res => res.json())
-//     .then(data => {
-//       console.log("found data" + data);
-//       setPinned(data);
-//     }).then(keepfetching()).then(returnRes())
+//     console.log("ARRAY: " + Object.values(arr[0]))
+    
+//     return pins;
+    
 //   };
 
 
-//   // const fetchItems = async () => {
-//   //   const data = await fetch(`${pinnedStocks}${fetchUsername()}`);
-//   //   console.log(`URL: ${pinnedStocks}${fetchUsername()}`)
-//   //   const pins = await data.json();
-//   //   setPinned( pins);
-//   // };
-//   // console.log("pinned bf return: " + Object.values(pinned));
-//   // console.log("item bf return: " + Object.values(item));
-//   // console.log("arr bf return: " + Object.values(arr));
-
-//   function returnRes(){ 
-//     return(
+//   return (
+    
 //     <div>
+      
+//        <p>{console.log("PRINT:" +pinned[0])}</p> 
 //       <ReactBootStrap.Table striped bordered hover variant="sm">
 //         <thead>
 //           <tr>
@@ -159,8 +133,9 @@ export default Endpoint2;
 
 //           </tr>
 //         </thead>
-
-//         {arr.map((item) => (
+       
+      
+//          {arr.map((item) => (
 //           <tr key={item.low}>
 //             <td>{item.symbol}</td>
 //             <td>{item.date}</td>
@@ -169,10 +144,9 @@ export default Endpoint2;
 //             <td>{item.high}</td>
 //             <td>{item.close}</td>
 //           </tr>
-//         ))}
+//         ))} 
 //       </ReactBootStrap.Table>
 //     </div>
-//   );}
+//   );
 // }
-
 // export default Endpoint2;

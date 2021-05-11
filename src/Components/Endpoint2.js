@@ -12,6 +12,8 @@ function Endpoint2() {
   }, []);
 
   const [pinned, setPinned] = useState([]);
+  const [count, setCount] = useState(0);
+
 
 
   const fetchItems = async () => {
@@ -40,7 +42,9 @@ function Endpoint2() {
           </tr>
         </thead>
          {pinned.map((item) => (
+          
           <tr key={item.data[0].symbol}>
+            
             <td>{item.data[0].symbol}</td>
             <td>{item.data[0].date.substring(0,10)}</td>
             <td>{item.data[0].open}</td>
@@ -48,7 +52,7 @@ function Endpoint2() {
             <td>{item.data[0].high}</td>
             <td>{item.data[0].close}</td>
           </tr>
-        ))} 
+        ))  }
       </ReactBootStrap.Table>
     </div>
   );

@@ -29,7 +29,7 @@ function Nav() {
 
 
                 <Link style={navStyle} to='/Pinned'>
-                    <li>Find stocks</li>
+                    <li>Notifications</li>
                 </Link>
 
                 <Link style={navStyle} to='/endpoint2'>
@@ -37,7 +37,7 @@ function Nav() {
                 </Link>
 
                 <Link style={navStyle} to='/endpoint3'>
-                    <li>List of StarWars characters</li>
+                    <li>Find stocks to pin</li>
                 </Link>
 
 
