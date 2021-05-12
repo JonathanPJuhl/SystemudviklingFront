@@ -3,6 +3,7 @@ import About from "./Components/About";
 import Pin from "./Components/PinStock";
 import Endpoint2 from "./Components/Endpoint2";
 import Endpoint3 from "./Components/Endpoint3";
+import Top5 from "./Components/top5"
 import { Link } from "react-router-dom";
 import Nav, { NavNotLoggedIn } from "./Components/Nav";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -93,7 +94,7 @@ function App() {
             <Route path="/login" component={LoginPage} />
             <Route path="/signup" component={signup} />
 
-            <Route path="/Pinned" component={Pin} />
+            <Route path="/top5" component={Top5} />
           </Switch>
         </div>
       </Router>
@@ -107,8 +108,8 @@ function App() {
               <Route path="/about" component={About} />
               <Route path="/logout" component={logoutBtn} />
               
-
-              <Route path="/Pinned" component={Pin} />
+              <Route path="/top5" component={Top5} />
+              <Route path="/notifications" component={Pin} />
               <Route path="/endpoint2" component={Endpoint2} />
               <Route path="/endpoint3" component={Endpoint3} />
             </Switch>

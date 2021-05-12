@@ -14,12 +14,12 @@ Nav{
 
 
 .links{
-  width: 40%;
+  width: 100%;
   display: flex;
   justify-content: space-around;
   align-items: center;
   list-style: none;
- 
+ float: left;
 }
 
 .stretch-to-fit{
@@ -31,4 +31,8 @@ Nav{
   /*the container must be positioned relative:*/
   position: relative;
   display: inline-block;
+}
+.Align-Left{
+  text-align: left;
+  margin-right: 30%;
 }
