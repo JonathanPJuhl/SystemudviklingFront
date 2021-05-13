@@ -12,6 +12,7 @@ import { fetchData } from "./Components/decodeJWT";
 import loginWithUser, {removeToken} from "./Components/Login";
 import logoutUser from "./Components/Logout";
 import AddUserUI from "./Components/AddUser";
+import SpecificStockInfo from "./Components/ShowSpecificStockInfo";
 
 
 function App() {
@@ -108,6 +109,7 @@ function App() {
               <Route path="/about" component={About} />
               <Route path="/logout" component={logoutBtn} />
               
+              <Route path="/specifistock" component={SpecificStockInfo} />
               <Route path="/top5" component={Top5} />
               <Route path="/notifications" component={Pin} />
               <Route path="/endpoint2" component={Endpoint2} />
@@ -130,25 +132,7 @@ function App() {
     </div>
   );
 }
-// window.addEventListener("beforeunload", (ev) => 
-// {  
-    
-//     ev.preventDefault();
-//     ev.returnValue = 'Are you sure you want to close? You will have to login again!'
-//     let val = ev.target.value
-//     console.log(val)
-//     check(val)
-//     function check(val){
-//       if(val==true){
-//         removeToken();
-//       }
-//       else{
 
-//       }
-//     }
-   
-     
-// });
 function LoggedIn() {
   const [dataFromServer, setDataFromServer] = useState("Loading...");
 

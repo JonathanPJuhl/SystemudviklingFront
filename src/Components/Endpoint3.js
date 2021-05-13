@@ -3,9 +3,10 @@ import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import * as ReactBootStrap from "react-bootstrap";
 import { pinStock } from "../settings";  
-import SpecificStockInfo, {Link} from "./ShowSpecificStockInfo"
+import SpecificStockInfo from "./ShowSpecificStockInfo"
 import {fetchUsername} from "./decodeJWT"
 import autocomplete from "./AutocompleteSearch"
+import { Link } from "react-router-dom";
 import { ReactSearchAutocomplete } from 'react-search-autocomplete'
 
 
@@ -77,9 +78,9 @@ function Endpoint3() {
 
         {items.map(item => (
          <tbody key={item.symbol}>
-            
+            <Link to="/specifistock">
             <td><input type="button" value={item.symbol} onClick={ShowSpecificStock}></input>{item.name}</td>
-            
+            </Link>
             <td>{item.symbol}</td>
             <td><button value={item.symbol} onClick={HandleOnclick}>Pin</button></td>
         </tbody>
@@ -96,9 +97,11 @@ function Endpoint3() {
       let itemToAddToDB = evt.target.value;
       AddStock(itemToAddToDB);
       
-    }function ShowSpecificStock(evt){
-      let itemTolookUp = evt.target.value;
-      Link(itemTolookUp)
+    }
+    function ShowSpecificStock(evt){
+      let symbol =  evt.target.value;
+      localStorage.setItem("stock_symbol", symbol);
+      
       
     }
     function AddStock(stockTicker){

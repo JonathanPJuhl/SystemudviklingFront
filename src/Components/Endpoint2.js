@@ -23,8 +23,11 @@ function Endpoint2() {
 
    
     setPinned(pins)
-    
+    console.log(pinned.length)
   };
+  const updateCount = () =>{
+    setCount(count+1);
+  }
 
 
   return (
@@ -41,18 +44,19 @@ function Endpoint2() {
 
           </tr>
         </thead>
-         {pinned.map((item) => (
-          
-          <tr key={item.data[0].symbol}>
+         {pinned.map((item) => 
+           item.data.map((e) => (
+          <tr key={e.symbol}>
+            <td>{e.symbol}</td>
+            <td>{e.date.substring(0,10)}</td>
+            <td>{e.open}</td>
+            <td>{e.low}</td>
+            <td>{e.high}</td>
+            <td>{e.close}</td>
             
-            <td>{item.data[0].symbol}</td>
-            <td>{item.data[0].date.substring(0,10)}</td>
-            <td>{item.data[0].open}</td>
-            <td>{item.data[0].low}</td>
-            <td>{item.data[0].high}</td>
-            <td>{item.data[0].close}</td>
           </tr>
-        ))  }
+           ))
+        )  }
       </ReactBootStrap.Table>
     </div>
   );
