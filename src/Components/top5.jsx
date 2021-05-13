@@ -24,7 +24,7 @@ function Top5(){
         setTop5(top5data);
         setBottom5(bottom5data);
         
-      }; console.log("Top5: " + Object.values(topFive) + "         bottom5: " + Object.values(bottomFive))
+      };
       return (
         <div>
             <h3>Top 5 highest rates</h3>
@@ -35,7 +35,7 @@ function Top5(){
                 <th>Name</th>
                 <th>Date</th>
                 <th>Close</th>
-                <th>Rate</th>
+                <th>Rate in % of closing-value yesterday</th>
     
               </tr>
             </thead>
@@ -57,7 +57,7 @@ function Top5(){
                 <th>Name</th>
                 <th>Date</th>
                 <th>Close</th>
-                <th>Rate</th>
+                <th>Rate in % of closing-value yesterday</th>
     
               </tr>
             </thead>

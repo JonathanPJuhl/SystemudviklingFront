@@ -11,7 +11,17 @@ Nav{
   color: white;
   list-style: none;
 }
+.fit100{
+  width:100%;
+}
+.buttons{
+  width: 20vh;
+  align-items: center;
 
+  background-color: rgb(57, 62, 73);
+  color: white;
+
+}
 
 .links{
   width: 100%;
@@ -35,4 +45,46 @@ Nav{
 .Align-Left{
   text-align: left;
   margin-right: 30%;
+}
+
+
+
+
+
+
+
+.graph .labels.x-labels {
+  text-anchor: middle;
+}
+
+.graph .labels.y-labels {
+  text-anchor: end;
+}
+
+
+.graph {
+  height: 500px;
+  width: 800px;
+}
+
+.graph .grid {
+  stroke: #ccc;
+  stroke-dasharray: 0;
+  stroke-width: 1;
+}
+
+.labels {
+  font-size: 13px;
+}
+
+.label-title {
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 12px;
+  fill: black;
+}
+
+.data {
+  fill: red;
+  stroke-width: 1; 
 }

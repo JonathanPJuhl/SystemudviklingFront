@@ -9,4 +9,5 @@ const loginURL = URL + "login";
 const pinStock = URL + "stock/pin"
 const pinnedStocks = URL + "stock/pinned/"
 const top5 = URL + "stock/filldbwithdailyratings/"
-export {adminURL, userURL, fiveThingsURL, loginURL, createUserURL, pinStock, pinnedStocks, top5};
+const makeChart = URL + "stock/makechart/"
+export {adminURL, userURL, fiveThingsURL, loginURL, createUserURL, pinStock, pinnedStocks, top5, makeChart};

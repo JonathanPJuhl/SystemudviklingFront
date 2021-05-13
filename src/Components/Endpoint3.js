@@ -57,8 +57,11 @@ function Endpoint3() {
 
       return (
         <div>
+        
            <ReactSearchAutocomplete
             items={items}
+
+            
             onSearch={handleOnSearch}
             
             onSelect={handleOnSelect}
@@ -77,12 +80,16 @@ function Endpoint3() {
 
 
         {items.map(item => (
-         <tbody key={item.symbol}>
+         <tbody>
+           <tr key={item.symbol}>
+             <td class="stretch-to-fit">
             <Link to="/specifistock">
-            <td><input type="button" value={item.symbol} onClick={ShowSpecificStock}></input>{item.name}</td>
-            </Link>
-            <td>{item.symbol}</td>
-            <td><button value={item.symbol} onClick={HandleOnclick}>Pin</button></td>
+            <button type="button" class="buttons" value={item.symbol} onClick={ShowSpecificStock}>{item.name}</button>
+            </Link></td>
+            <td >{item.symbol}
+            </td>
+            <td ><button value={item.symbol} class="buttons" onClick={HandleOnclick}>Pin</button></td>
+            </tr>
         </tbody>
  )) }
 
