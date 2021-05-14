@@ -57,7 +57,7 @@ function Top5(){
                 <th>Name</th>
                 <th>Date</th>
                 <th>Close</th>
-                <th>Rate in % of closing-value yesterday</th>
+                <th>Rate in % of closing-value yesterday</th>  
     
               </tr>
             </thead>

@@ -1,5 +1,5 @@
-const URL = "http://localhost:8080/sys/api/";
-//const URL = "ipwithme.com/tomcat/sys/api/"
+//const URL = "http://localhost:8080/sys/api/";
+const URL = "/tomcat/sys/api/"
 
 const adminURL = URL + "user/admin";
 const userURL = URL + "user/user";
@@ -10,4 +10,8 @@ const pinStock = URL + "stock/pin"
 const pinnedStocks = URL + "stock/pinned/"
 const top5 = URL + "stock/filldbwithdailyratings/"
 const makeChart = URL + "stock/makechart/"
-export {adminURL, userURL, fiveThingsURL, loginURL, createUserURL, pinStock, pinnedStocks, top5, makeChart};
+const EOD = `https://api.marketstack.com/v1/eod?access_key=5feeee1a869fedc6e6e24e62c735bc22&symbols=`
+const exchanges = `https://api.marketstack.com/v1/exchanges?access_key=5feeee1a869fedc6e6e24e62c735bc22`
+const tickers = `https://api.marketstack.com/v1/tickers?access_key=5feeee1a869fedc6e6e24e62c735bc22`
+export {adminURL, userURL, fiveThingsURL, loginURL, createUserURL, pinStock, pinnedStocks, top5, 
+    makeChart, EOD, exchanges, tickers};

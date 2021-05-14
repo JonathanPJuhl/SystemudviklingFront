@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import * as ReactBootStrap from "react-bootstrap";
 import { makeChart } from "../settings";
+import {EOD} from "../settings"
 
 const SpecificStockInfo = () => {
   useEffect(() => {
@@ -15,7 +16,7 @@ const SpecificStockInfo = () => {
 
   const fetchItems = async () => {
     const data = await fetch(
-      `https://api.marketstack.com/v1/eod?access_key=5feeee1a869fedc6e6e24e62c735bc22&symbols=${ticker}`
+      `${EOD}${ticker}`
     );
 
     const item = await data.json();

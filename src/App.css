@@ -3,11 +3,10 @@
 }
 
 Nav{
-  display: flex;
   justify-content:  space-around;
   align-items: center;
   min-height: 10vh;
-  background-color: rgb(57, 62, 73);
+  background-color: #393e49;
   color: white;
   list-style: none;
 }

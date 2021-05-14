@@ -1,8 +1,8 @@
 
 import '../App.css';
-import autocomplete from "./AutocompleteSearch"
 import React, {useState, useEffect} from 'react';
 import handleHttpErrors from './Errors'
+import {exchanges} from "../settings"
 let stocks = [];
 function makeStockArray(stockData){
   stocks = stockData.map(function (e){
@@ -12,7 +12,7 @@ function makeStockArray(stockData){
 }
 const fetchSearchData = () => {
   const options = makeOptions("GET");
-  return fetch("https://api.marketstack.com/v1/exchanges?access_key=5feeee1a869fedc6e6e24e62c735bc22", options)
+  return fetch(exchanges, options)
     .then(handleHttpErrors)
     .then(res => res.json())
     .then(data => {makeStockArray(data)})
@@ -35,7 +35,7 @@ const makeOptions= (method) =>{
 
 function handleSearchQuery(evt){
   let id = evt.target.id;
-  autocomplete(id, stocks)
+
 }
 
 function Pin() {

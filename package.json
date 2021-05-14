@@ -30,7 +30,7 @@
       "react-app/jest"
     ]
   },
-  "homepage": ".",
+  "homepage": "../sys-frontend",
   "browserslist": {
     "production": [
       ">0.2%",

@@ -5,9 +5,9 @@ import * as ReactBootStrap from "react-bootstrap";
 import { pinStock } from "../settings";  
 import SpecificStockInfo from "./ShowSpecificStockInfo"
 import {fetchUsername} from "./decodeJWT"
-import autocomplete from "./AutocompleteSearch"
 import { Link } from "react-router-dom";
 import { ReactSearchAutocomplete } from 'react-search-autocomplete'
+import {tickers} from "../settings"
 
 
 function Endpoint3() {
@@ -23,8 +23,7 @@ function Endpoint3() {
 
 
     const fetchItems =  async () => { 
-      const data = await fetch('https://api.marketstack.com/v1/tickers?access_key=5feeee1a869fedc6e6e24e62c735bc22'
-      );
+      const data = await fetch(tickers);
 
       const items = await data.json();
          setItems(items.data);
