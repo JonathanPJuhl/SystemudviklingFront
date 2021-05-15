@@ -79,7 +79,11 @@ function Endpoint3() {
 
 
         {items.map(item => (
+            !item.symbol.includes(".")?(
+
+          
          <tbody>
+           
            <tr key={item.symbol}>
              <td class="stretch-to-fit">
             <Link to="/specifistock">
@@ -89,7 +93,8 @@ function Endpoint3() {
             </td>
             <td ><button value={item.symbol} class="buttons" onClick={HandleOnclick}>Pin</button></td>
             </tr>
-        </tbody>
+        </tbody>):(
+        <tbody></tbody>)
  )) }
 
 
@@ -99,6 +104,9 @@ function Endpoint3() {
       </div>
       );
     }
+
+
+    
     function HandleOnclick(evt){
       let itemToAddToDB = evt.target.value;
       AddStock(itemToAddToDB);

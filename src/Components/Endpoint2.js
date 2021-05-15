@@ -12,22 +12,16 @@ function Endpoint2() {
   }, []);
 
   const [pinned, setPinned] = useState([]);
-  const [count, setCount] = useState(0);
 
 
 
   const fetchItems = async () => {
     const data = await fetch(`${pinnedStocks}${fetchUsername()}`);
-    //console.log(`URL: ${pinnedStocks}${fetchUsername()}`)
     const pins = await data.json();
-
-   
-    setPinned(pins)
+    setPinned(pins.data)
     console.log(pinned.length)
   };
-  const updateCount = () =>{
-    setCount(count+1);
-  }
+
 
 
   return (
@@ -44,8 +38,7 @@ function Endpoint2() {
 
           </tr>
         </thead>
-         {pinned.map((item) => 
-           item.data.map((e) => (
+         {pinned.map((e) => (
           <tr key={e.symbol}>
             <td>{e.symbol}</td>
             <td>{e.date.substring(0,10)}</td>
@@ -56,7 +49,7 @@ function Endpoint2() {
             
           </tr>
            ))
-        )  }
+         }
       </ReactBootStrap.Table>
     </div>
   );
