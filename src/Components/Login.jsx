@@ -13,8 +13,6 @@ const removeToken = () => {
 
 const setToken = (token) => {
     localStorage.setItem('jwtToken', token);
-   
-    
   }
 const loggedIn = () => {
   const loggedIn = getToken() != null;

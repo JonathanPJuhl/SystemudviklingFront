@@ -1,11 +1,15 @@
 import "../App.css";
 import React, { useState, useEffect } from "react";
 import { fetchUsername } from "./decodeJWT";
-import { pinnedStocks, removePin } from "../settings";
+import { pinnedStocks, removePin, addNoti } from "../settings";
 import * as ReactBootStrap from "react-bootstrap";
 
 function Endpoint2() {
   const [pinned, setPinned] = useState([]);
+
+  const init = { username: "", ticker: "", value: ""};
+  const [user, setUser] = useState(init);
+let tick;
   useEffect(() => {
     
     fetchItems();
@@ -31,8 +35,28 @@ function Endpoint2() {
     };
     fetchItems();
   }
+  
 
+  const handleChange = (evt) => {
+    evt.preventDefault();
+    let target = evt.target;
+    let id = target.id;
+    let value = target.value
 
+      setUser({...user, [id]: value});
+ console.log(user.username)
+}
+
+  
+  function HandleNoti(evt){
+    evt.preventDefault();
+    let URLadditions = `${addNoti}${fetchUsername()},${tick},${user.value}`
+ return fetch(URLadditions)
+     
+}
+function setTicker(ticker){
+  tick = ticker; 
+}
 
   return (
     <div>
@@ -45,6 +69,7 @@ function Endpoint2() {
             <th>Low</th>
             <th>High</th>
             <th>Close</th>
+            <th>Set notification</th>
             <th>Remove pin</th>
 
           </tr>
@@ -57,6 +82,18 @@ function Endpoint2() {
             <td>{e.low}</td>
             <td>{e.high}</td>
             <td>{e.close}</td>
+            <td >
+              <form onChange={handleChange}  onSubmit={setTicker(e.symbol)}>
+              <select name="Notify me when" id="value">
+              <option value="0" selected>Choose...</option>
+              <option value="2">Stock drops or gains more than 2%</option>
+              <option value="5">Stock drops or gains more than 5%</option>
+              <option value="10">Stock drops or gains more than 10%</option>
+              </select> 
+              
+              <input type="submit" class="buttons" onClick={HandleNoti} value="Submit"></input>
+               </form>
+            </td>
             <td ><button value={e.symbol} class="buttons" onClick={HandleOnclick}>Remove pin</button></td>
           </tr>
            ))
