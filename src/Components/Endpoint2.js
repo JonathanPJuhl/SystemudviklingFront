@@ -1,17 +1,17 @@
 import "../App.css";
 import React, { useState, useEffect } from "react";
 import { fetchUsername } from "./decodeJWT";
-import { pinnedStocks } from "../settings";
+import { pinnedStocks, removePin } from "../settings";
 import * as ReactBootStrap from "react-bootstrap";
 
 function Endpoint2() {
-  
+  const [pinned, setPinned] = useState([]);
   useEffect(() => {
     
     fetchItems();
   }, []);
 
-  const [pinned, setPinned] = useState([]);
+  
 
 
 
@@ -21,6 +21,16 @@ function Endpoint2() {
     setPinned(pins.data)
     console.log(pinned.length)
   };
+  function HandleOnclick(evt){
+    let value = evt.target.value;
+    const fetchItems = async () => {
+      console.log(`${removePin}${fetchUsername()},${value}`);
+      const data = await fetch(`${removePin}${fetchUsername()},${value}`);
+      const removed = await data.json();
+      alert(removed.resp)
+    };
+    fetchItems();
+  }
 
 
 
@@ -35,6 +45,7 @@ function Endpoint2() {
             <th>Low</th>
             <th>High</th>
             <th>Close</th>
+            <th>Remove pin</th>
 
           </tr>
         </thead>
@@ -46,7 +57,7 @@ function Endpoint2() {
             <td>{e.low}</td>
             <td>{e.high}</td>
             <td>{e.close}</td>
-            
+            <td ><button value={e.symbol} class="buttons" onClick={HandleOnclick}>Remove pin</button></td>
           </tr>
            ))
          }

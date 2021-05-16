@@ -14,7 +14,7 @@ const marketStackKey = "80f90dbc8de86858f292e8e8ff76293f";
 const EOD = `https://api.marketstack.com/v1/eod?access_key=${marketStackKey}&symbols=`
 const exchanges = `https://api.marketstack.com/v1/exchanges?access_key=${marketStackKey}`
 const tickers = `https://api.marketstack.com/v1/tickers?access_key=${marketStackKey}`
-const removePin = "stock/deletePin/"
+const removePin = URL + "stock/deletePin/"
 
 export {adminURL, userURL, fiveThingsURL, loginURL, createUserURL, pinStock, pinnedStocks, top5, 
     makeChart, EOD, exchanges, tickers, removePin};

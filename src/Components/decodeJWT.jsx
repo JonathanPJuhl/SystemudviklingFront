@@ -19,6 +19,9 @@ const fetchUsername = () => {
   };
   let tokenFinished = getDecodedToken();
      username = tokenFinished.username;
+     if(username==undefined){
+       return(<div><p>Please login</p></div>);
+     }
     return username;
 }
 const fetchData = () => {
