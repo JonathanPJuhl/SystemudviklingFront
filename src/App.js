@@ -1,6 +1,6 @@
 import "./App.css";
 import About from "./Components/About";
-import Pin from "./Components/PinStock";
+import Notifications from "./Components/Notifications";
 import Endpoint2 from "./Components/Endpoint2";
 import Endpoint3 from "./Components/Endpoint3";
 import Top5 from "./Components/top5"
@@ -111,7 +111,7 @@ function App() {
               
               <Route path="/specifistock" component={SpecificStockInfo} />
               <Route path="/top5" component={Top5} />
-              <Route path="/notifications" component={Pin} />
+              <Route path="/notifications" component={Notifications} />
               <Route path="/endpoint2" component={Endpoint2} />
               <Route path="/endpoint3" component={Endpoint3} />
             </Switch>

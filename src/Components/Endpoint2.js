@@ -43,15 +43,22 @@ let tick;
     let id = target.id;
     let value = target.value
 
-      setUser({...user, [id]: value});
- console.log(user.username)
+    setUser({...user, [id]: value});
+ console.log(user.value)
 }
 
   
   function HandleNoti(evt){
     evt.preventDefault();
-    let URLadditions = `${addNoti}${fetchUsername()},${tick},${user.value}`
- return fetch(URLadditions)
+    let target = evt.target;
+    let id = target.id;
+    let value = target.value
+    console.log(id)
+    if(id=="ticker"){
+    setUser({...user, [id]: value});}
+    let URLadditions = `${addNoti}${fetchUsername()},${value},${user.value}`
+    console.log(URLadditions);
+    return fetch(URLadditions)
      
 }
 function setTicker(ticker){
@@ -82,18 +89,23 @@ function setTicker(ticker){
             <td>{e.low}</td>
             <td>{e.high}</td>
             <td>{e.close}</td>
+
+
             <td >
-              <form onChange={handleChange}  onSubmit={setTicker(e.symbol)}>
+              <form onChange={handleChange} >
+
               <select name="Notify me when" id="value">
               <option value="0" selected>Choose...</option>
               <option value="2">Stock drops or gains more than 2%</option>
               <option value="5">Stock drops or gains more than 5%</option>
               <option value="10">Stock drops or gains more than 10%</option>
               </select> 
-              
-              <input type="submit" class="buttons" onClick={HandleNoti} value="Submit"></input>
+
+              <button type="submit" class="buttons" id="ticker" onClick={HandleNoti} value={e.symbol}>submit</button>
                </form>
             </td>
+
+            
             <td ><button value={e.symbol} class="buttons" onClick={HandleOnclick}>Remove pin</button></td>
           </tr>
            ))

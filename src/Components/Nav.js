@@ -1,11 +1,32 @@
 import "../App.css";
-import React from "react";
 import { Link } from "react-router-dom";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from 'react-bootstrap/Container'
+import {fetchUsername} from "./decodeJWT"
+import {checkForNotis, notifications} from "../settings";
+import React, { useState, useEffect } from "react";
 
 function Nav() {
+
+  const [noti, setNoti] = useState([]);
+    useEffect(() => {
+        fetchItems();
+          }, []);
+
+    const fetchItems =  async () => { 
+        const data1 = await fetch(checkForNotis);
+        const data2 = await fetch(notifications+fetchUsername());
+        
+        const items = await data2.json();
+        console.log(items);
+        const count = items.map(function (e){
+          if(e.status==true)
+          return e;
+        })
+           setNoti(count);
+      }
+
   const navStyle = {
     color: " white",
   };
@@ -42,7 +63,8 @@ function Nav() {
             </Col>
             <Col sm={1}>
             <Link style={navStyle} to="/notifications">
-              <li>Notifications</li>
+             {noti.length>0 ? (<li>{noti.length}Notifications</li>):(<li>Notifications</li>)} 
+             
             </Link>
             </Col>
             <Col sm={1}>
