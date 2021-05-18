@@ -3,22 +3,21 @@ import About from "./Components/About";
 import Notifications from "./Components/Notifications";
 import Endpoint2 from "./Components/Endpoint2";
 import Endpoint3 from "./Components/Endpoint3";
-import Top5 from "./Components/top5"
+import Top5 from "./Components/top5";
 import { Link } from "react-router-dom";
 import Nav, { NavNotLoggedIn } from "./Components/Nav";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { fetchData } from "./Components/decodeJWT";
-import loginWithUser, {removeToken} from "./Components/Login";
+import loginWithUser from "./Components/Login";
 import logoutUser from "./Components/Logout";
 import AddUserUI from "./Components/AddUser";
 import SpecificStockInfo from "./Components/ShowSpecificStockInfo";
 
-
 function App() {
   let logged = false;
-  if(localStorage.getItem("jwtToken")!=null){
-    logged= true;
+  if (localStorage.getItem("jwtToken") != null) {
+    logged = true;
   }
 
   const [loggedIn, setLoggedIn] = useState(logged);
@@ -31,7 +30,6 @@ function App() {
       evt.preventDefault();
       console.log(loginCredentials);
       login(loginCredentials.username, loginCredentials.password);
-      
     };
     const onChange = (evt) => {
       setLoginCredentials({
@@ -65,8 +63,7 @@ function App() {
 
   const login = (user, pass) => {
     LoginPage();
-    loginWithUser(user, pass).then((res) => setLoggedIn(true))
-    
+    loginWithUser(user, pass).then((res) => setLoggedIn(true));
   };
   const logoutBtn = () => {
     return (
@@ -108,7 +105,7 @@ function App() {
               <Route path="/" exact component={HomeLoggedIn} />
               <Route path="/about" component={About} />
               <Route path="/logout" component={logoutBtn} />
-              
+
               <Route path="/specifistock" component={SpecificStockInfo} />
               <Route path="/top5" component={Top5} />
               <Route path="/notifications" component={Notifications} />

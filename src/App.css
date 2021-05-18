@@ -2,55 +2,43 @@
   text-align: center;
 }
 
-Nav{
-  justify-content:  space-around;
+Nav {
+  justify-content: space-around;
   align-items: center;
   min-height: 10vh;
   background-color: #393e49;
   color: white;
   list-style: none;
 }
-.fit100{
-  width:100%;
+.fit100 {
+  width: 100%;
 }
-.buttons{
+.buttons {
   width: 20vh;
   align-items: center;
 
   background-color: rgb(57, 62, 73);
   color: white;
-
 }
 
-.links{
+.links {
   width: 100%;
   display: flex;
   justify-content: space-around;
   align-items: center;
   list-style: none;
- float: left;
+  float: left;
 }
 
-.stretch-to-fit{
-  width:50%;
+.stretch-to-fit {
+  width: 50%;
   margin-top: 3%;
 }
 
-.autocomplete {
-  /*the container must be positioned relative:*/
-  position: relative;
-  display: inline-block;
-}
-.Align-Left{
+.Align-Left {
   text-align: left;
   margin-right: 30%;
 }
-
-
-
-
-
-
 
 .graph .labels.x-labels {
   text-anchor: middle;
@@ -59,7 +47,6 @@ Nav{
 .graph .labels.y-labels {
   text-anchor: end;
 }
-
 
 .graph {
   height: 500px;
@@ -85,5 +72,5 @@ Nav{
 
 .data {
   fill: red;
-  stroke-width: 1; 
+  stroke-width: 1;
 }

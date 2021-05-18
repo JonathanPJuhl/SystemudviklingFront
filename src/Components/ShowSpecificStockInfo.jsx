@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import * as ReactBootStrap from "react-bootstrap";
 import { makeChart } from "../settings";
-import {EOD} from "../settings"
+import { EOD } from "../settings";
 
 const SpecificStockInfo = () => {
   useEffect(() => {
@@ -15,46 +15,41 @@ const SpecificStockInfo = () => {
   const [chart, setChart] = useState("");
 
   const fetchItems = async () => {
-    const data = await fetch(
-      `${EOD}${ticker}`
-    );
+    const data = await fetch(`${EOD}${ticker}`);
 
     const item = await data.json();
 
     setSpecific(item.data);
 
-    const fetchChart = async (item)=> {
+    const fetchChart = async (item) => {
       const options = makeOptions("POST", item);
-       const stockChar = await fetch(makeChart, options);
-    const stockItem = await stockChar.json();
-    console.log(stockItem)
-       setChart(stockItem);
-    }
+      const stockChar = await fetch(makeChart, options);
+      const stockItem = await stockChar.json();
+      console.log(stockItem);
+      setChart(stockItem);
+    };
     const makeOptions = (method, body) => {
       var opts = {
         method: method,
         headers: {
           "Content-type": "application/json",
-          "Accept": "application/json",
+          Accept: "application/json",
         },
       };
       if (body) {
         opts.body = JSON.stringify(body);
-       // console.log(JSON.stringify(body));
       }
       return opts;
     };
-    
+
     fetchChart(item);
-    
   };
 
   return (
     <div>
-        <h1>{ticker} movements visualized</h1>
-        <div className="container" dangerouslySetInnerHTML={{ __html:chart }} />
+      <h1>{ticker} movements visualized</h1>
+      <div className="container" dangerouslySetInnerHTML={{ __html: chart }} />
 
-        
       <h3>Stock movements for {ticker}</h3>
       <ReactBootStrap.Table striped bordered hover variant="sm">
         <thead>

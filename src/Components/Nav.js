@@ -2,30 +2,28 @@ import "../App.css";
 import { Link } from "react-router-dom";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Container from 'react-bootstrap/Container'
-import {fetchUsername} from "./decodeJWT"
-import {checkForNotis, notifications} from "../settings";
+import { fetchUsername } from "./decodeJWT";
+import { checkForNotis, notifications } from "../settings";
 import React, { useState, useEffect } from "react";
 
 function Nav() {
-
   const [noti, setNoti] = useState([]);
-    useEffect(() => {
-        fetchItems();
-          }, []);
+  useEffect(() => {
+    fetchItems();
+  }, []);
 
-    const fetchItems =  async () => { 
-        const data1 = await fetch(checkForNotis);
-        const data2 = await fetch(notifications+fetchUsername());
-        
-        const items = await data2.json();
-        console.log(items);
-        const count = items.map(function (e){
-          if(e.status==true)
-          return e;
-        })
-           setNoti(count);
-      }
+  const fetchItems = async () => {
+    await fetch(checkForNotis);
+    const data2 = await fetch(notifications + fetchUsername());
+
+    const items = await data2.json();
+    console.log(items);
+    const count = items.map(function (e) {
+      if (e.status == true) return e;
+      return;
+    });
+    setNoti(count);
+  };
 
   const navStyle = {
     color: " white",
@@ -33,55 +31,52 @@ function Nav() {
 
   return (
     <nav>
-       
-       <Row>
-            <Col>  
-      <Link style={navStyle} to="/">
-        <h3>Home</h3>
-      </Link>
-      </Col>
-     </Row>
-      
-        
-          <Row><ul className="links">
-            
-            
-            <Col sm={1}>
+      <Row>
+        <Col>
+          <Link style={navStyle} to="/">
+            <h3>Home</h3>
+          </Link>
+        </Col>
+      </Row>
+
+      <Row>
+        <ul className="links">
+          <Col sm={1}>
             <Link style={navStyle} to="/top5">
-              <li >Top 5 stocks</li>
+              <li>Top 5 stocks</li>
             </Link>
-            </Col>
-            <Col sm={2}>
+          </Col>
+          <Col sm={2}>
             <Link style={navStyle} to="/endpoint2">
-              <li >Pinned stocks</li>
+              <li>Pinned stocks</li>
             </Link>
-            </Col>
-            <Col sm={6}>
+          </Col>
+          <Col sm={6}>
             <Link style={navStyle} to="/endpoint3">
               <li class="Align-Left">Find stocks to pin</li>
             </Link>
-            </Col>
-            <Col sm={1}>
+          </Col>
+          <Col sm={1}>
             <Link style={navStyle} to="/notifications">
-             {noti.length>0 ? (<li>{noti.length}Notifications</li>):(<li>Notifications</li>)} 
-             
+              {noti.length > 0 ? (
+                <li>{noti.length}Notifications</li>
+              ) : (
+                <li>Notifications</li>
+              )}
             </Link>
-            </Col>
-            <Col sm={1}>
+          </Col>
+          <Col sm={1}>
             <Link style={navStyle} to="/about">
               <li>Account</li>
             </Link>
-            
-            </Col>
-            <Col sm={1}>
-              <Link style={navStyle} to="/logout">
-                <li>Logout</li>
-              </Link>
-            </Col>
-           </ul></Row>
-        
-     
-      
+          </Col>
+          <Col sm={1}>
+            <Link style={navStyle} to="/logout">
+              <li>Logout</li>
+            </Link>
+          </Col>
+        </ul>
+      </Row>
     </nav>
   );
 }
@@ -108,10 +103,6 @@ function NavNotLoggedIn() {
         <Link style={navStyle} to="/about">
           <li>About</li>
         </Link>
-
-        {/* <Link style={navStyle} to='/endpoint1'>
-                    <li>Users</li>
-                </Link> */}
       </ul>
     </nav>
   );
