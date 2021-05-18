@@ -18,18 +18,16 @@ function Nav() {
 
     const items = await data2.json();
     console.log(items);
-    const count = items.map(function (e) {
-      if (e.status == true) return e;
-      return;
-    });
-    setNoti(count);
+    const counter = items.filter(it => it.status == true);
+ 
+    setNoti(counter);
   };
 
   const navStyle = {
     color: " white",
   };
 
-  return (
+  return(
     <nav>
       <Row>
         <Col>
@@ -59,7 +57,7 @@ function Nav() {
           <Col sm={1}>
             <Link style={navStyle} to="/notifications">
               {noti.length > 0 ? (
-                <li>{noti.length}Notifications</li>
+                <li class="red">{noti.length} Notifications</li>
               ) : (
                 <li>Notifications</li>
               )}

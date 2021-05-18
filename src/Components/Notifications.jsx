@@ -7,6 +7,7 @@ import {
   markRead,
   deleteMessage,
 } from "../settings";
+import { Link } from "react-router-dom";
 
 import * as ReactBootStrap from "react-bootstrap";
 
@@ -25,11 +26,13 @@ function Notifications() {
     setNoti(items);
   };
   function HandleOnclick(evt) {
+    window.location.reload();
     evt.preventDefault();
     let markAsRead = evt.target.value;
     const mark = async () => {
       await fetch(markRead + markAsRead);
       fetchItems();
+      
     };
 
     mark();
@@ -64,8 +67,9 @@ function Notifications() {
             <td>{e.stockTicker}</td>
             <td>{e.date}</td>
             <td>{e.message}</td>
-            <td>{e.status ? <p>New</p> : <p>read</p>}</td>
+            <td>{e.status ? <p>New</p> : <p>Read</p>}</td>
             <td>
+           
               {e.status ? (
                 <button
                   value={e.id + ",false"}
@@ -83,6 +87,7 @@ function Notifications() {
                   Mark as unread
                 </button>
               )}
+            
             </td>
             <td>
               <button

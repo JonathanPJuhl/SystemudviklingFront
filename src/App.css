@@ -34,7 +34,9 @@ Nav {
   width: 50%;
   margin-top: 3%;
 }
-
+.red{
+  color: red;
+}
 .Align-Left {
   text-align: left;
   margin-right: 30%;
